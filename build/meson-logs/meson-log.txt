@@ -1,28 +1,18 @@
-Build started at 2017-05-03T17:53:10.693240
+Build started at 2017-05-04T00:09:16.152629
 Python binary: /usr/bin/python3
 Python system: Linux
 The Meson build system
 Version: 0.39.1
-Source dir: /home/m/fuse-3.0.1
-Build dir: /home/m/fuse-3.0.1/build
+Source dir: /home/m/OS_Assignment_2
+Build dir: /home/m/OS_Assignment_2/build
 Build type: native build
 Project name: libfuse3
-Sanity testing c compiler: cc
-Is cross compiler: False.
-Sanity check compiler command line: cc /home/m/fuse-3.0.1/build/meson-private/sanitycheckc.c -o /home/m/fuse-3.0.1/build/meson-private/sanitycheckc.exe
-Sanity check compile stdout:
-
------
-Sanity check compile stderr:
-
------
-Running test binary command: /home/m/fuse-3.0.1/build/meson-private/sanitycheckc.exe
 Native c compiler: cc (gcc 5.4.0)
 Build machine cpu family: x86
 Build machine cpu: i686
 Running compile:
-Working directory:  /tmp/tmpfjti6kaj
-Command line:  cc /tmp/tmpfjti6kaj/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpfjti6kaj/output.exe 
+Working directory:  /tmp/tmpk4zpbz2z
+Command line:  cc /tmp/tmpk4zpbz2z/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpk4zpbz2z/output.exe 
 
 Code:
  
@@ -51,8 +41,8 @@ Compiler stderr:
  
 Checking for function "fork": YES
 Running compile:
-Working directory:  /tmp/tmpp2ncna8_
-Command line:  cc /tmp/tmpp2ncna8_/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpp2ncna8_/output.exe 
+Working directory:  /tmp/tmpt5360mxt
+Command line:  cc /tmp/tmpt5360mxt/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpt5360mxt/output.exe 
 
 Code:
  
@@ -81,8 +71,8 @@ Compiler stderr:
  
 Checking for function "fstatat": YES
 Running compile:
-Working directory:  /tmp/tmpvufvpk11
-Command line:  cc /tmp/tmpvufvpk11/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpvufvpk11/output.exe 
+Working directory:  /tmp/tmp79_amvza
+Command line:  cc /tmp/tmp79_amvza/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp79_amvza/output.exe 
 
 Code:
  
@@ -111,8 +101,8 @@ Compiler stderr:
  
 Checking for function "openat": YES
 Running compile:
-Working directory:  /tmp/tmpi5g71rjv
-Command line:  cc /tmp/tmpi5g71rjv/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpi5g71rjv/output.exe 
+Working directory:  /tmp/tmpe_vr0v2v
+Command line:  cc /tmp/tmpe_vr0v2v/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpe_vr0v2v/output.exe 
 
 Code:
  
@@ -141,8 +131,8 @@ Compiler stderr:
  
 Checking for function "readlinkat": YES
 Running compile:
-Working directory:  /tmp/tmp4wgjy22r
-Command line:  cc /tmp/tmp4wgjy22r/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp4wgjy22r/output.exe 
+Working directory:  /tmp/tmpi7z2svhh
+Command line:  cc /tmp/tmpi7z2svhh/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpi7z2svhh/output.exe 
 
 Code:
  
@@ -171,8 +161,8 @@ Compiler stderr:
  
 Checking for function "pipe2": YES
 Running compile:
-Working directory:  /tmp/tmpiori4kmo
-Command line:  cc /tmp/tmpiori4kmo/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpiori4kmo/output.exe 
+Working directory:  /tmp/tmpgo86v2bv
+Command line:  cc /tmp/tmpgo86v2bv/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpgo86v2bv/output.exe 
 
 Code:
  
@@ -201,8 +191,8 @@ Compiler stderr:
  
 Checking for function "splice": YES
 Running compile:
-Working directory:  /tmp/tmpyesg3000
-Command line:  cc /tmp/tmpyesg3000/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpyesg3000/output.exe 
+Working directory:  /tmp/tmpz9y2scil
+Command line:  cc /tmp/tmpz9y2scil/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpz9y2scil/output.exe 
 
 Code:
  
@@ -231,8 +221,8 @@ Compiler stderr:
  
 Checking for function "vmsplice": YES
 Running compile:
-Working directory:  /tmp/tmpeodmpzj9
-Command line:  cc /tmp/tmpeodmpzj9/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpeodmpzj9/output.exe 
+Working directory:  /tmp/tmpq5q8i7be
+Command line:  cc /tmp/tmpq5q8i7be/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpq5q8i7be/output.exe 
 
 Code:
  
@@ -261,8 +251,8 @@ Compiler stderr:
  
 Checking for function "posix_fallocate": YES
 Running compile:
-Working directory:  /tmp/tmp7mpfjm74
-Command line:  cc /tmp/tmp7mpfjm74/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp7mpfjm74/output.exe 
+Working directory:  /tmp/tmpe72v64p9
+Command line:  cc /tmp/tmpe72v64p9/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpe72v64p9/output.exe 
 
 Code:
  
@@ -291,8 +281,8 @@ Compiler stderr:
  
 Checking for function "fdatasync": YES
 Running compile:
-Working directory:  /tmp/tmpn24zjner
-Command line:  cc /tmp/tmpn24zjner/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpn24zjner/output.exe 
+Working directory:  /tmp/tmp32hm90x_
+Command line:  cc /tmp/tmp32hm90x_/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp32hm90x_/output.exe 
 
 Code:
  
@@ -321,8 +311,8 @@ Compiler stderr:
  
 Checking for function "utimensat": YES
 Running compile:
-Working directory:  /tmp/tmpco38xilb
-Command line:  cc /tmp/tmpco38xilb/testfile.c -O0 -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpco38xilb/output.exe 
+Working directory:  /tmp/tmp1fax2c3t
+Command line:  cc /tmp/tmp1fax2c3t/testfile.c -O0 -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp1fax2c3t/output.exe 
 
 Code:
  #include <sys/xattr.h>
@@ -343,8 +333,8 @@ Compiler stderr:
  
 Checking for function "setxattr": YES
 Running compile:
-Working directory:  /tmp/tmpftyekx_l
-Command line:  cc /tmp/tmpftyekx_l/testfile.c -O0 -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpftyekx_l/output.exe 
+Working directory:  /tmp/tmpjw1i0rbh
+Command line:  cc /tmp/tmpjw1i0rbh/testfile.c -O0 -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpjw1i0rbh/output.exe 
 
 Code:
  #include <iconv.h>
@@ -365,8 +355,8 @@ Compiler stderr:
  
 Checking for function "iconv": YES
 Running compile:
-Working directory:  /tmp/tmpcsk5kgfc
-Command line:  cc /tmp/tmpcsk5kgfc/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmpcsk5kgfc/output.obj 
+Working directory:  /tmp/tmptlt11t9y
+Command line:  cc /tmp/tmptlt11t9y/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmptlt11t9y/output.obj 
 
 Code:
  
@@ -389,8 +379,8 @@ Compiler stderr:
  
 Checking whether type "struct stat" has member "st_atim": YES
 Running compile:
-Working directory:  /tmp/tmp0dwxju6i
-Command line:  cc /tmp/tmp0dwxju6i/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmp0dwxju6i/output.obj 
+Working directory:  /tmp/tmp3sf5ngqh
+Command line:  cc /tmp/tmp3sf5ngqh/testfile.c -O0 -D_GNU_SOURCE -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmp3sf5ngqh/output.obj 
 
 Code:
  
@@ -410,16 +400,16 @@ Code:
 Compiler stdout:
  
 Compiler stderr:
- /tmp/tmp0dwxju6i/testfile.c: In function ‘bar’:
-/tmp/tmp0dwxju6i/testfile.c:12:16: error: ‘struct stat’ has no member named ‘st_atimespec’
+ /tmp/tmp3sf5ngqh/testfile.c: In function ‘bar’:
+/tmp/tmp3sf5ngqh/testfile.c:12:16: error: ‘struct stat’ has no member named ‘st_atimespec’
              foo.st_atimespec;
                 ^
 
 Checking whether type "struct stat" has member "st_atimespec": NO
 Configuring config.h using configuration
 Running compile:
-Working directory:  /tmp/tmpgpuaocf6
-Command line:  cc /tmp/tmpgpuaocf6/testfile.c -O0 -O0 -Werror=unused-result -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmpgpuaocf6/output.obj 
+Working directory:  /tmp/tmpjuco2nz2
+Command line:  cc /tmp/tmpjuco2nz2/testfile.c -O0 -O0 -Werror=unused-result -pipe -D_FILE_OFFSET_BITS=64 -c -o /tmp/tmpjuco2nz2/output.obj 
 
 Code:
  
@@ -433,8 +423,8 @@ int main(void) {
 Compiler stdout:
  
 Compiler stderr:
- /tmp/tmpgpuaocf6/testfile.c: In function ‘main’:
-/tmp/tmpgpuaocf6/testfile.c:6:5: error: ignoring return value of ‘get_4’, declared with attribute warn_unused_result [-Werror=unused-result]
+ /tmp/tmpjuco2nz2/testfile.c: In function ‘main’:
+/tmp/tmpjuco2nz2/testfile.c:6:5: error: ignoring return value of ‘get_4’, declared with attribute warn_unused_result [-Werror=unused-result]
      (void) get_4();
      ^
 cc1: some warnings being treated as errors
@@ -442,8 +432,8 @@ cc1: some warnings being treated as errors
 Message: Compiler warns about unused result even when casting to void
 Dependency threads found: YES
 Running compile:
-Working directory:  /tmp/tmpldtf5r63
-Command line:  cc /tmp/tmpldtf5r63/testfile.c -O0 -ldl -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmpldtf5r63/output.exe 
+Working directory:  /tmp/tmp_417mms2
+Command line:  cc /tmp/tmp_417mms2/testfile.c -O0 -ldl -pipe -D_FILE_OFFSET_BITS=64 -o /tmp/tmp_417mms2/output.exe 
 
 Code:
  int main(int argc, char **argv) {
@@ -455,6 +445,6 @@ Compiler stdout:
 Compiler stderr:
  
 Library dl found: YES
-Program install_helper.sh found: YES (/home/m/fuse-3.0.1/util/install_helper.sh)
+Program install_helper.sh found: YES (/home/m/OS_Assignment_2/util/install_helper.sh)
 Adding test "wrong_cmd".
-Build targets in project: 24
+Build targets in project: 26

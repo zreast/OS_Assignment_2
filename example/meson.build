@@ -3,7 +3,7 @@
 
 examples = [ 'passthrough', 'passthrough_fh', 'null', 'hello', 'hello_ll',
              'ioctl', 'ioctl_client', 'poll_client',
-             'passthrough_ll', 'cuse', 'cuse_client' ]
+             'passthrough_ll', 'cuse', 'cuse_client', 'eiei', 'vCOWFS' ]
 
 threaded_examples = [ 'notify_inval_inode',
                       'notify_store_retrieve',

@@ -49,7 +49,7 @@ rule CUSTOM_COMMAND_DEP
  restat = 1
 
 rule REGENERATE_BUILD
- command = '/usr/bin/python3' '/usr/share/meson/meson' --internal regenerate '/home/m/fuse-3.0.1' '/home/m/fuse-3.0.1/build' --backend ninja
+ command = '/usr/bin/python3' '/usr/share/meson/meson' --internal regenerate '/home/m/OS_Assignment_2' '/home/m/OS_Assignment_2/build' --backend ninja
  description = Regenerating build files
  generator = 1
 
@@ -58,6 +58,17 @@ rule REGENERATE_BUILD
 build PHONY: phony
 
 # Build rules for targets
+
+build util/fusermount3@exe/util_mount_util.c.o: c_COMPILER util/mount_util.c
+ DEPFILE = util/fusermount3@exe/util_mount_util.c.o.d
+ ARGS = '-Iutil/fusermount3@exe' '-Iutil' '-I../util' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build util/fusermount3@exe/fusermount.c.o: c_COMPILER ../util/fusermount.c
+ DEPFILE = util/fusermount3@exe/fusermount.c.o.d
+ ARGS = '-Iutil/fusermount3@exe' '-Iutil' '-I../util' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build util/fusermount3: c_LINKER util/fusermount3@exe/util_mount_util.c.o util/fusermount3@exe/fusermount.c.o
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
 
 build lib/fuse3@sha/fuse.c.o: c_COMPILER ../lib/fuse.c
  DEPFILE = lib/fuse3@sha/fuse.c.o.d
@@ -113,33 +124,22 @@ build lib/fuse3@sha/modules_iconv.c.o: c_COMPILER ../lib/modules/iconv.c
 
 build lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols: SHSYM lib/libfuse3.so.3.0.0
 
-build lib/libfuse3.so.3.0.0: c_LINKER lib/fuse3@sha/fuse.c.o lib/fuse3@sha/fuse_loop.c.o lib/fuse3@sha/fuse_loop_mt.c.o lib/fuse3@sha/fuse_lowlevel.c.o lib/fuse3@sha/fuse_opt.c.o lib/fuse3@sha/fuse_signals.c.o lib/fuse3@sha/buffer.c.o lib/fuse3@sha/cuse_lowlevel.c.o lib/fuse3@sha/helper.c.o lib/fuse3@sha/modules_subdir.c.o lib/fuse3@sha/mount.c.o lib/fuse3@sha/mount_util.c.o lib/fuse3@sha/modules_iconv.c.o | /home/m/fuse-3.0.1/lib/fuse_versionscript
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' '-shared' '-fPIC' '-Wl,-soname,libfuse3.so.3' '-pthread' '-Wl,--version-script,/home/m/fuse-3.0.1/lib/fuse_versionscript' '-ldl' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build lib/libfuse3.so.3.0.0: c_LINKER lib/fuse3@sha/fuse.c.o lib/fuse3@sha/fuse_loop.c.o lib/fuse3@sha/fuse_loop_mt.c.o lib/fuse3@sha/fuse_lowlevel.c.o lib/fuse3@sha/fuse_opt.c.o lib/fuse3@sha/fuse_signals.c.o lib/fuse3@sha/buffer.c.o lib/fuse3@sha/cuse_lowlevel.c.o lib/fuse3@sha/helper.c.o lib/fuse3@sha/modules_subdir.c.o lib/fuse3@sha/mount.c.o lib/fuse3@sha/mount_util.c.o lib/fuse3@sha/modules_iconv.c.o | /home/m/OS_Assignment_2/lib/fuse_versionscript
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' '-shared' '-fPIC' '-Wl,-soname,libfuse3.so.3' '-pthread' '-Wl,--version-script,/home/m/OS_Assignment_2/lib/fuse_versionscript' '-ldl' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build example/notify_inval_entry@exe/notify_inval_entry.c.o: c_COMPILER ../example/notify_inval_entry.c
- DEPFILE = example/notify_inval_entry@exe/notify_inval_entry.c.o.d
- ARGS = '-Iexample/notify_inval_entry@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
+build example/cuse_client@exe/cuse_client.c.o: c_COMPILER ../example/cuse_client.c
+ DEPFILE = example/cuse_client@exe/cuse_client.c.o.d
+ ARGS = '-Iexample/cuse_client@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
-build example/notify_inval_entry: c_LINKER example/notify_inval_entry@exe/notify_inval_entry.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/cuse_client: c_LINKER example/cuse_client@exe/cuse_client.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build test/wrong_command@exe/wrong_command.c.o: c_COMPILER ../test/wrong_command.c
- DEPFILE = test/wrong_command@exe/wrong_command.c.o.d
- ARGS = '-Itest/wrong_command@exe' '-Itest' '-I../test' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+build example/poll@exe/poll.c.o: c_COMPILER ../example/poll.c
+ DEPFILE = example/poll@exe/poll.c.o.d
+ ARGS = '-Iexample/poll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
 
-build test/wrong_command: c_LINKER test/wrong_command@exe/wrong_command.c.o
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
-
-build util/mount_util.c: CUSTOM_COMMAND ../util/../lib/mount_util.c
- COMMAND = 'cp' '-a' '../util/../lib/mount_util.c' 'util/mount_util.c'
- description = 'Generating$ mount_util$ with$ a$ custom$ command.'
-
-build example/ioctl_client@exe/ioctl_client.c.o: c_COMPILER ../example/ioctl_client.c
- DEPFILE = example/ioctl_client@exe/ioctl_client.c.o.d
- ARGS = '-Iexample/ioctl_client@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
-
-build example/ioctl_client: c_LINKER example/ioctl_client@exe/ioctl_client.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/poll: c_LINKER example/poll@exe/poll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build util/mount.fuse3@exe/mount.fuse.c.o: c_COMPILER ../util/mount.fuse.c
  DEPFILE = util/mount.fuse3@exe/mount.fuse.c.o.d
@@ -148,44 +148,62 @@ build util/mount.fuse3@exe/mount.fuse.c.o: c_COMPILER ../util/mount.fuse.c
 build util/mount.fuse3: c_LINKER util/mount.fuse3@exe/mount.fuse.c.o
  LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
 
-build example/passthrough@exe/passthrough.c.o: c_COMPILER ../example/passthrough.c
- DEPFILE = example/passthrough@exe/passthrough.c.o.d
- ARGS = '-Iexample/passthrough@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+build test/conftest.py test/pytest.ini test/test_examples.py test/util.py: CUSTOM_COMMAND ../test/conftest.py ../test/pytest.ini ../test/test_examples.py ../test/util.py
+ COMMAND = 'cp' '-fPu' '--preserve=mode' '../test/conftest.py' '../test/pytest.ini' '../test/test_examples.py' '../test/util.py' '/home/m/OS_Assignment_2/build/test'
+ description = 'Generating$ test_scripts$ with$ a$ custom$ command.'
 
-build example/passthrough: c_LINKER example/passthrough@exe/passthrough.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/notify_store_retrieve@exe/notify_store_retrieve.c.o: c_COMPILER ../example/notify_store_retrieve.c
+ DEPFILE = example/notify_store_retrieve@exe/notify_store_retrieve.c.o.d
+ ARGS = '-Iexample/notify_store_retrieve@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
 
-build example/hello_ll@exe/hello_ll.c.o: c_COMPILER ../example/hello_ll.c
- DEPFILE = example/hello_ll@exe/hello_ll.c.o.d
- ARGS = '-Iexample/hello_ll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+build example/notify_store_retrieve: c_LINKER example/notify_store_retrieve@exe/notify_store_retrieve.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build example/hello_ll: c_LINKER example/hello_ll@exe/hello_ll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/hello@exe/hello.c.o: c_COMPILER ../example/hello.c
+ DEPFILE = example/hello@exe/hello.c.o.d
+ ARGS = '-Iexample/hello@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
-build test/test_write_cache@exe/test_write_cache.c.o: c_COMPILER ../test/test_write_cache.c
- DEPFILE = test/test_write_cache@exe/test_write_cache.c.o.d
- ARGS = '-Itest/test_write_cache@exe' '-Itest' '-I../test' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
-
-build test/test_write_cache: c_LINKER test/test_write_cache@exe/test_write_cache.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
-
-build example/passthrough_ll@exe/passthrough_ll.c.o: c_COMPILER ../example/passthrough_ll.c
- DEPFILE = example/passthrough_ll@exe/passthrough_ll.c.o.d
- ARGS = '-Iexample/passthrough_ll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
-
-build example/passthrough_ll: c_LINKER example/passthrough_ll@exe/passthrough_ll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/hello: c_LINKER example/hello@exe/hello.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build example/ioctl@exe/ioctl.c.o: c_COMPILER ../example/ioctl.c
  DEPFILE = example/ioctl@exe/ioctl.c.o.d
  ARGS = '-Iexample/ioctl@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
 build example/ioctl: c_LINKER example/ioctl@exe/ioctl.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build test/conftest.py test/pytest.ini test/test_examples.py test/util.py: CUSTOM_COMMAND ../test/conftest.py ../test/pytest.ini ../test/test_examples.py ../test/util.py
- COMMAND = 'cp' '-fPu' '--preserve=mode' '../test/conftest.py' '../test/pytest.ini' '../test/test_examples.py' '../test/util.py' '/home/m/fuse-3.0.1/build/test'
- description = 'Generating$ test_scripts$ with$ a$ custom$ command.'
+build util/mount_util.c: CUSTOM_COMMAND ../util/../lib/mount_util.c
+ COMMAND = 'cp' '-a' '../util/../lib/mount_util.c' 'util/mount_util.c'
+ description = 'Generating$ mount_util$ with$ a$ custom$ command.'
+
+build example/eiei@exe/eiei.c.o: c_COMPILER ../example/eiei.c
+ DEPFILE = example/eiei@exe/eiei.c.o.d
+ ARGS = '-Iexample/eiei@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build example/eiei: c_LINKER example/eiei@exe/eiei.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
+build example/vCOWFS@exe/vCOWFS.c.o: c_COMPILER ../example/vCOWFS.c
+ DEPFILE = example/vCOWFS@exe/vCOWFS.c.o.d
+ ARGS = '-Iexample/vCOWFS@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build example/vCOWFS: c_LINKER example/vCOWFS@exe/vCOWFS.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
+build example/passthrough@exe/passthrough.c.o: c_COMPILER ../example/passthrough.c
+ DEPFILE = example/passthrough@exe/passthrough.c.o.d
+ ARGS = '-Iexample/passthrough@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build example/passthrough: c_LINKER example/passthrough@exe/passthrough.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
+build example/null@exe/null.c.o: c_COMPILER ../example/null.c
+ DEPFILE = example/null@exe/null.c.o.d
+ ARGS = '-Iexample/null@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build example/null: c_LINKER example/null@exe/null.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build test/test_syscalls@exe/test_syscalls.c.o: c_COMPILER ../test/test_syscalls.c
  DEPFILE = test/test_syscalls@exe/test_syscalls.c.o.d
@@ -194,86 +212,82 @@ build test/test_syscalls@exe/test_syscalls.c.o: c_COMPILER ../test/test_syscalls
 build test/test_syscalls: c_LINKER test/test_syscalls@exe/test_syscalls.c.o
  LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
 
+build test/wrong_command@exe/wrong_command.c.o: c_COMPILER ../test/wrong_command.c
+ DEPFILE = test/wrong_command@exe/wrong_command.c.o.d
+ ARGS = '-Itest/wrong_command@exe' '-Itest' '-I../test' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+
+build test/wrong_command: c_LINKER test/wrong_command@exe/wrong_command.c.o
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
+
+build example/notify_inval_entry@exe/notify_inval_entry.c.o: c_COMPILER ../example/notify_inval_entry.c
+ DEPFILE = example/notify_inval_entry@exe/notify_inval_entry.c.o.d
+ ARGS = '-Iexample/notify_inval_entry@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
+
+build example/notify_inval_entry: c_LINKER example/notify_inval_entry@exe/notify_inval_entry.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
 build example/passthrough_fh@exe/passthrough_fh.c.o: c_COMPILER ../example/passthrough_fh.c
  DEPFILE = example/passthrough_fh@exe/passthrough_fh.c.o.d
  ARGS = '-Iexample/passthrough_fh@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
 build example/passthrough_fh: c_LINKER example/passthrough_fh@exe/passthrough_fh.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
-
-build test/test_setattr@exe/test_setattr.c.o: c_COMPILER ../test/test_setattr.c
- DEPFILE = test/test_setattr@exe/test_setattr.c.o.d
- ARGS = '-Itest/test_setattr@exe' '-Itest' '-I../test' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
-
-build test/test_setattr: c_LINKER test/test_setattr@exe/test_setattr.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
-
-build util/fusermount3@exe/util_mount_util.c.o: c_COMPILER util/mount_util.c
- DEPFILE = util/fusermount3@exe/util_mount_util.c.o.d
- ARGS = '-Iutil/fusermount3@exe' '-Iutil' '-I../util' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
-
-build util/fusermount3@exe/fusermount.c.o: c_COMPILER ../util/fusermount.c
- DEPFILE = util/fusermount3@exe/fusermount.c.o.d
- ARGS = '-Iutil/fusermount3@exe' '-Iutil' '-I../util' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
-
-build util/fusermount3: c_LINKER util/fusermount3@exe/util_mount_util.c.o util/fusermount3@exe/fusermount.c.o
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed'
-
-build example/hello@exe/hello.c.o: c_COMPILER ../example/hello.c
- DEPFILE = example/hello@exe/hello.c.o.d
- ARGS = '-Iexample/hello@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
-
-build example/hello: c_LINKER example/hello@exe/hello.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build example/cuse@exe/cuse.c.o: c_COMPILER ../example/cuse.c
  DEPFILE = example/cuse@exe/cuse.c.o.d
  ARGS = '-Iexample/cuse@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
 build example/cuse: c_LINKER example/cuse@exe/cuse.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build example/null@exe/null.c.o: c_COMPILER ../example/null.c
- DEPFILE = example/null@exe/null.c.o.d
- ARGS = '-Iexample/null@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+build example/ioctl_client@exe/ioctl_client.c.o: c_COMPILER ../example/ioctl_client.c
+ DEPFILE = example/ioctl_client@exe/ioctl_client.c.o.d
+ ARGS = '-Iexample/ioctl_client@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
-build example/null: c_LINKER example/null@exe/null.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/ioctl_client: c_LINKER example/ioctl_client@exe/ioctl_client.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build example/poll@exe/poll.c.o: c_COMPILER ../example/poll.c
- DEPFILE = example/poll@exe/poll.c.o.d
- ARGS = '-Iexample/poll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
+build example/hello_ll@exe/hello_ll.c.o: c_COMPILER ../example/hello_ll.c
+ DEPFILE = example/hello_ll@exe/hello_ll.c.o.d
+ ARGS = '-Iexample/hello_ll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
-build example/poll: c_LINKER example/poll@exe/poll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/hello_ll: c_LINKER example/hello_ll@exe/hello_ll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
-build example/cuse_client@exe/cuse_client.c.o: c_COMPILER ../example/cuse_client.c
- DEPFILE = example/cuse_client@exe/cuse_client.c.o.d
- ARGS = '-Iexample/cuse_client@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
+build example/passthrough_ll@exe/passthrough_ll.c.o: c_COMPILER ../example/passthrough_ll.c
+ DEPFILE = example/passthrough_ll@exe/passthrough_ll.c.o.d
+ ARGS = '-Iexample/passthrough_ll@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
-build example/cuse_client: c_LINKER example/cuse_client@exe/cuse_client.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+build example/passthrough_ll: c_LINKER example/passthrough_ll@exe/passthrough_ll.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
+build test/test_write_cache@exe/test_write_cache.c.o: c_COMPILER ../test/test_write_cache.c
+ DEPFILE = test/test_write_cache@exe/test_write_cache.c.o.d
+ ARGS = '-Itest/test_write_cache@exe' '-Itest' '-I../test' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
+
+build test/test_write_cache: c_LINKER test/test_write_cache@exe/test_write_cache.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
+
+build test/test_setattr@exe/test_setattr.c.o: c_COMPILER ../test/test_setattr.c
+ DEPFILE = test/test_setattr@exe/test_setattr.c.o.d
+ ARGS = '-Itest/test_setattr@exe' '-Itest' '-I../test' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
+
+build test/test_setattr: c_LINKER test/test_setattr@exe/test_setattr.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build example/poll_client@exe/poll_client.c.o: c_COMPILER ../example/poll_client.c
  DEPFILE = example/poll_client@exe/poll_client.c.o.d
  ARGS = '-Iexample/poll_client@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result'
 
 build example/poll_client: c_LINKER example/poll_client@exe/poll_client.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
-
-build example/notify_store_retrieve@exe/notify_store_retrieve.c.o: c_COMPILER ../example/notify_store_retrieve.c
- DEPFILE = example/notify_store_retrieve@exe/notify_store_retrieve.c.o.d
- ARGS = '-Iexample/notify_store_retrieve@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
-
-build example/notify_store_retrieve: c_LINKER example/notify_store_retrieve@exe/notify_store_retrieve.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 build example/notify_inval_inode@exe/notify_inval_inode.c.o: c_COMPILER ../example/notify_inval_inode.c
  DEPFILE = example/notify_inval_inode@exe/notify_inval_inode.c.o.d
  ARGS = '-Iexample/notify_inval_inode@exe' '-Iexample' '-I../example' '-I.' '-I../' '-Ilib' '-I../lib' '-Iinclude' '-I../include' '-fdiagnostics-color=always' '-pipe' '-D_FILE_OFFSET_BITS=64' '-D_REENTRANT' '-DHAVE_CONFIG_H' '-Wall' '-Wextra' '-Wno-sign-compare' '-Wstrict-prototypes' '-Wmissing-declarations' '-Wwrite-strings' '-O2' '-g' '-fno-strict-aliasing' '-Wno-unused-result' '-pthread'
 
 build example/notify_inval_inode: c_LINKER example/notify_inval_inode@exe/notify_inval_inode.c.o | lib/fuse3@sha/lib/libfuse3.so.3.0.0.symbols
- LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/fuse-3.0.1/build/lib'
+ LINK_ARGS = '-Wl,--no-undefined' '-Wl,--as-needed' 'lib/libfuse3.so.3.0.0' '-pthread' '-Wl,-rpath,/home/m/OS_Assignment_2/build/lib'
 
 # Test rules
 
@@ -291,25 +305,25 @@ build benchmark: CUSTOM_COMMAND all PHONY
 
 build install: CUSTOM_COMMAND PHONY | all
  DESC = Installing$ files.
- COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'install' '/home/m/fuse-3.0.1/build/meson-private/install.dat'
+ COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'install' '/home/m/OS_Assignment_2/build/meson-private/install.dat'
  pool = console
 
 # Suffix
 
 build scan-build: CUSTOM_COMMAND PHONY
- COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'scanbuild' '/home/m/fuse-3.0.1' '/home/m/fuse-3.0.1/build' '/usr/bin/python3' '/usr/share/meson/meson' '-Ddisable-mtab=false'
+ COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'scanbuild' '/home/m/OS_Assignment_2' '/home/m/OS_Assignment_2/build' '/usr/bin/python3' '/usr/share/meson/meson' '-Ddisable-mtab=false'
  pool = console
 
 build uninstall: CUSTOM_COMMAND PHONY
  COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'uninstall'
  pool = console
 
-build all: phony example/notify_inval_entry test/wrong_command example/ioctl_client util/mount.fuse3 example/passthrough example/hello_ll lib/libfuse3.so.3.0.0 example/poll_client example/passthrough_ll example/ioctl test/conftest.py test/test_syscalls example/passthrough_fh example/cuse_client util/fusermount3 test/test_write_cache example/cuse example/null example/poll example/hello test/test_setattr example/notify_store_retrieve example/notify_inval_inode
+build all: phony util/fusermount3 example/cuse_client example/poll util/mount.fuse3 test/conftest.py example/notify_store_retrieve example/ioctl example/hello example/ioctl_client example/vCOWFS example/passthrough example/null test/test_syscalls test/wrong_command example/notify_inval_entry example/passthrough_fh lib/libfuse3.so.3.0.0 example/cuse example/eiei example/hello_ll example/notify_inval_inode test/test_write_cache test/test_setattr example/poll_client example/passthrough_ll
 
 default all
 
 build clean-ctlist: CUSTOM_COMMAND PHONY
- COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'cleantrees' '/home/m/fuse-3.0.1/build/meson-private/cleantrees.dat'
+ COMMAND = '/usr/bin/python3' '/usr/share/meson/meson' '--internal' 'cleantrees' '/home/m/OS_Assignment_2/build/meson-private/cleantrees.dat'
  description = 'Cleaning$ CustomTarget$ directories'
 
 build clean: CUSTOM_COMMAND PHONY | clean-ctlist
