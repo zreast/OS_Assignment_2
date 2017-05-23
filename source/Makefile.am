@@ -1,21 +1,18 @@
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = -I$(top_srcdir)/include -D_REENTRANT
-noinst_HEADERS = ioctl.h
-noinst_PROGRAMS = passthrough passthrough_fh null hello hello_ll \
-		  ioctl ioctl_client poll poll_client \
-		  passthrough_ll notify_inval_inode \
-		  notify_store_retrieve notify_inval_entry \
-		  cuse cuse_client
+ACLOCAL_AMFLAGS = -I m4
 
-LDADD = ../lib/libfuse3.la
-passthrough_fh_LDADD = ../lib/libfuse3.la @passthrough_fh_libs@
+SUBDIRS = @subdirs2@ doc
 
-ioctl_client_CPPFLAGS =
-ioctl_client_LDFLAGS =
-ioctl_client_LDADD =
-poll_client_CPPFLAGS =
-poll_client_LDFLAGS =
-poll_client_LDADD =
+EXTRA_DIST = \
+	fuse3.pc.in \
+	README* \
+	test/*.py \
+	test/pytest.ini \
+        meson.build \
+        meson_options.txt
 
-EXTRA_DIST = meson.build
+pkgconfigdir = @pkgconfigdir@
+pkgconfig_DATA = fuse3.pc
+
+$(pkgconfig_DATA): config.status
